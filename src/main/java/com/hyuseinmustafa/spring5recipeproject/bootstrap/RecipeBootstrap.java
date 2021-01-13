@@ -107,7 +107,13 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "4 Serve: Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.\n" +
                 "\n");
         Notes guacNotes = new Notes();
-        guacNotes.setRecipeNotes("Notes..");
+        guacNotes.setRecipeNotes("For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
+                "Feel free to experiment! One classic Mexican guacamole has pomegranate seeds and chunks of peaches in it (a Diana Kennedy favorite). Try guacamole with added pineapple, mango, or strawberries.\n" +
+                "The simplest version of guacamole is just mashed avocados with salt. Don't let the lack of availability of other ingredients stop you from making guacamole.\n" +
+                "To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.\n" +
+                "\n" +
+                "\n" +
+                "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
         guacNotes.setRecipe(guacRecipe);
         guacRecipe.setNotes(guacNotes);
 
@@ -122,6 +128,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         guacRecipe.getCategories().add(americanCategory);
         guacRecipe.getCategories().add(mexicanCategory);
+
+        guacRecipe.setUrl("http://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacRecipe.setServings(4);
+        guacRecipe.setSource("Simply Recipes");
 
         //add to return list
         recipes.add(guacRecipe);
@@ -178,6 +188,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         tacosRecipe.addIngredient(new Ingredient("lime, cut into wedges", new BigDecimal(4), eachUom));
 
         tacosRecipe.getCategories().add(americanCategory);
+
+        tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacosRecipe.setServings(4);
+        tacosRecipe.setSource("Simply Recipes");
 
         recipes.add(tacosRecipe);
 
