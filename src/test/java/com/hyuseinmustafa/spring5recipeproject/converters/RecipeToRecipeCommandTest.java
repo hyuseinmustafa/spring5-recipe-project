@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RecipeToRecipeCommandTest {
-    public static final Long NOTES_ID = new Long(5L);
 
+    public static final Long NOTES_ID = new Long(5L);
     public static final Long ID_VALUE = new Long(1L);
     public static final String DESCRIPTION = "description";
     public static final Integer PREP_TIME = new Integer(2);
@@ -18,10 +18,8 @@ class RecipeToRecipeCommandTest {
     public static final String SOURCE = "source";
     public static final String URL = "url";
     public static final String DIRECTIONS = "directions";
-    public static final Ingredient INGREDIENT = new Ingredient();
     public static final Difficulty DIFFICULTY = Difficulty.HARD;
     public static final Notes NOTES = new Notes();
-    public static final Category CATEGORY = new Category();
     RecipeToRecipeCommand converter;
 
 
@@ -54,10 +52,13 @@ class RecipeToRecipeCommandTest {
         source.setSource(SOURCE);
         source.setUrl(URL);
         source.setDirections(DIRECTIONS);
-        source.getIngredients().add(INGREDIENT);
         source.setDifficulty(DIFFICULTY);
         source.setNotes(NOTES);
-        source.getCategories().add(CATEGORY);
+        source.getIngredients().add(new Ingredient(2L));
+        source.getIngredients().add(new Ingredient(3L));
+        source.getCategories().add(new Category(5L));
+        source.getCategories().add(new Category(6L));
+        source.getCategories().add(new Category(7L));
 
         //when
         RecipeCommand target = converter.convert(source);
@@ -74,7 +75,7 @@ class RecipeToRecipeCommandTest {
         assertEquals(DIRECTIONS, target.getDirections());
         assertEquals(DIFFICULTY, target.getDifficulty());
         assertEquals(NOTES_ID, target.getNotes().getId());
-        assertEquals(1, target.getIngredients().size());
-        assertEquals(1, target.getCategories().size());
+        assertEquals(2, target.getIngredients().size());
+        assertEquals(3, target.getCategories().size());
     }
 }

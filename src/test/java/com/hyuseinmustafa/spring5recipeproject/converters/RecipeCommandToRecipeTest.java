@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RecipeCommandToRecipeTest {
-    public static final Long NOTES_ID = new Long(5L);
 
+    public static final Long NOTES_ID = new Long(5L);
     public static final Long ID_VALUE = new Long(1L);
     public static final String DESCRIPTION = "description";
     public static final Integer PREP_TIME = new Integer(2);
@@ -22,10 +22,8 @@ class RecipeCommandToRecipeTest {
     public static final String SOURCE = "source";
     public static final String URL = "url";
     public static final String DIRECTIONS = "directions";
-    public static final IngredientCommand INGREDIENT = new IngredientCommand();
     public static final Difficulty DIFFICULTY = Difficulty.HARD;
     public static final NotesCommand NOTES = new NotesCommand();
-    public static final CategoryCommand CATEGORY = new CategoryCommand();
     RecipeCommandToRecipe converter;
 
     @BeforeEach
@@ -57,10 +55,13 @@ class RecipeCommandToRecipeTest {
         source.setSource(SOURCE);
         source.setUrl(URL);
         source.setDirections(DIRECTIONS);
-        source.getIngredients().add(INGREDIENT);
         source.setDifficulty(DIFFICULTY);
         source.setNotes(NOTES);
-        source.getCategories().add(CATEGORY);
+        source.getIngredients().add(new IngredientCommand(2L));
+        source.getIngredients().add(new IngredientCommand(3L));
+        source.getCategories().add(new CategoryCommand(4L));
+        source.getCategories().add(new CategoryCommand(5L));
+        source.getCategories().add(new CategoryCommand(6L));
 
         //when
         Recipe target = converter.convert(source);
@@ -77,7 +78,7 @@ class RecipeCommandToRecipeTest {
         assertEquals(DIRECTIONS, target.getDirections());
         assertEquals(DIFFICULTY, target.getDifficulty());
         assertEquals(NOTES_ID, target.getNotes().getId());
-        assertEquals(1, target.getIngredients().size());
-        assertEquals(1, target.getCategories().size());
+        assertEquals(2, target.getIngredients().size());
+        assertEquals(3, target.getCategories().size());
     }
 }

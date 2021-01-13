@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IngredientToIngredientCommandTest {
 
+    public static final Long UOM_ID = new Long(6L);
     public static final Long ID_VALUE = new Long(1L);
     public static final BigDecimal AMOUNT = new BigDecimal(2);
     public static final String DESCRIPTION = "description";
@@ -36,6 +37,8 @@ class IngredientToIngredientCommandTest {
     @Test
     void convert() {
         //given
+        UOM.setId(UOM_ID);
+
         Ingredient source = new Ingredient();
         source.setId(ID_VALUE);
         source.setAmount(AMOUNT);
@@ -50,6 +53,6 @@ class IngredientToIngredientCommandTest {
         assertEquals(ID_VALUE, target.getId());
         assertEquals(AMOUNT, target.getAmount());
         assertEquals(DESCRIPTION, target.getDescription());
-        assertNotNull(target.getUom());
+        assertEquals(UOM_ID, target.getUom().getId());
     }
 }

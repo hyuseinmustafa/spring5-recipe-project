@@ -10,4 +10,8 @@ import lombok.Setter;
 public class CategoryCommand {
     private Long id;
     private String description;
+
+    public CategoryCommand(Long id) {
+        this.id = id;
+    }
 }

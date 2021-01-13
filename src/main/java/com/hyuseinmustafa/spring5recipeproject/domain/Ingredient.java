@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
@@ -19,7 +20,8 @@ public class Ingredient {
     @ManyToOne
     private  Recipe recipe;
 
-    public Ingredient() {
+    public Ingredient(Long id) {
+        this.id = id;
     }
 
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {

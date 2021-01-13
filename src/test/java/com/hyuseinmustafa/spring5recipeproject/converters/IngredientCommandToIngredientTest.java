@@ -38,6 +38,7 @@ class IngredientCommandToIngredientTest {
     void convert() {
         //given
         UOM.setId(UOM_ID);
+
         IngredientCommand source = new IngredientCommand();
         source.setId(ID_VALUE);
         source.setAmount(AMOUNT);

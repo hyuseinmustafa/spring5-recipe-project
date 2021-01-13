@@ -15,4 +15,8 @@ public class IngredientCommand {
     private String description;
     private BigDecimal amount;
     private UnitOfMeasureCommand uom;
+
+    public IngredientCommand(Long id) {
+        this.id = id;
+    }
 }

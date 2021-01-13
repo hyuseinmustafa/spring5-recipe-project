@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Category {
@@ -15,4 +16,8 @@ public class Category {
     private String description;
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
+
+    public Category(Long id) {
+        this.id = id;
+    }
 }
