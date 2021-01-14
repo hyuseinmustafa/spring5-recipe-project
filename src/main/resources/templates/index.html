@@ -47,8 +47,9 @@
                                 <td th:text="${recipe.id}">id</td>
                                 <td th:text="${recipe.description}">description</td>
                                 <td>
-                                    <a class="pull-right btn btn-primary btn-sm col-xs-offset-1" th:href="@{'/recipe/' + ${recipe.id} + '/show'}">View</a>
-                                    <a class="pull-right btn btn-primary btn-sm col-xs-offset-1" th:href="@{'/recipe/' + ${recipe.id} + '/update'}">Update</a>
+                                    <a class="pull-right btn btn-primary btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}">Delete</a>
+                                    <a class="pull-right btn btn-primary btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/update'}">Update</a>
+                                    <a class="pull-right btn btn-primary btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/show'}">View</a>
                                 </td>
                             </tr>
                         </table>
