@@ -1,5 +1,8 @@
 package com.hyuseinmustafa.spring5recipeproject.services;
 
+import com.hyuseinmustafa.spring5recipeproject.commands.RecipeCommand;
+import com.hyuseinmustafa.spring5recipeproject.converters.RecipeCommandToRecipe;
+import com.hyuseinmustafa.spring5recipeproject.converters.RecipeToRecipeCommand;
 import com.hyuseinmustafa.spring5recipeproject.domain.Recipe;
 import com.hyuseinmustafa.spring5recipeproject.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -37,5 +40,13 @@ public class RecipeServiceImpl implements RecipeService {
         }
 
         return recipeOptional.get();
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
+        Recipe recipe = new RecipeCommandToRecipe().convert(recipeCommand);
+        recipeRepository.save(recipe);
+
+        return new RecipeToRecipeCommand().convert(recipe);
     }
 }
