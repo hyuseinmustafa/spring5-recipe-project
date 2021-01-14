@@ -1,6 +1,8 @@
 package com.hyuseinmustafa.spring5recipeproject.controllers;
 
 import com.hyuseinmustafa.spring5recipeproject.commands.RecipeCommand;
+import com.hyuseinmustafa.spring5recipeproject.converters.RecipeToRecipeCommand;
+import com.hyuseinmustafa.spring5recipeproject.domain.Recipe;
 import com.hyuseinmustafa.spring5recipeproject.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/recipe/show/{id}")
+    @GetMapping("/recipe/{id}/show")
     public String showById(@PathVariable String id, Model model){
 
         model.addAttribute("recipe", recipeService.findById(new Long(id)));
@@ -32,11 +34,19 @@ public class RecipeController {
 
         return "recipe/recipeform";
     }
+
+    @GetMapping("/recipe/{id}/update")
+    public String updateRecipe(@PathVariable String id, Model model){
+        model.addAttribute("recipe", new RecipeToRecipeCommand().convert(recipeService.findById(new Long(id))));
+
+        return "recipe/recipeform";
+    }
+
     @PostMapping("/recipe/save")
     public String saveOrUpdate(@ModelAttribute RecipeCommand command){
 
         RecipeCommand savedRecipe = recipeService.saveRecipeCommand(command);
 
-        return "redirect:/recipe/show/" + savedRecipe.getId();
+        return "redirect:/recipe/" + savedRecipe.getId() + "/show";
     }
 }
